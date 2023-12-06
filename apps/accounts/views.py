@@ -4,4 +4,6 @@ from django.shortcuts import render
 # Амин лох
 
 # Adil
+
+#v_tymane
 # amfbskjdvksjdv
