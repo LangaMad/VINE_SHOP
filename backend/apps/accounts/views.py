@@ -7,3 +7,7 @@ from django.shortcuts import render
 
 #v_tymane
 # amfbskjdvksjdv
+
+
+
+# asd
