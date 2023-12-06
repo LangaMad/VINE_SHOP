@@ -7,3 +7,5 @@ from django.shortcuts import render
 
 #v_tymane
 # amfbskjdvksjdv
+
+#Amin popytka
