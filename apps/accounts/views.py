@@ -18,4 +18,4 @@ from django.shortcuts import render
 # НЕ ПУШ
 # взлом хасана
 # Кринге
-#
+#  map metro v Log
