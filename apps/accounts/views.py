@@ -15,4 +15,4 @@ from django.shortcuts import render
 
 # browl Stars
 
-# хасаним
+# хасанимgfdgdf
