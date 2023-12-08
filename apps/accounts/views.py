@@ -17,10 +17,5 @@ from django.shortcuts import render
 # for ismar
 # НЕ ПУШ
 # взлом хасана
-
-
-# ismar krasawchik
-# a hasan ne top
-
-# browl Stars
-# xczvcvsd
+# Кринге
+#
