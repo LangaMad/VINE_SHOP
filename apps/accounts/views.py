@@ -13,4 +13,9 @@ from django.shortcuts import render
 # adil top
 # hello
 
+
+# for ismar
+# НЕ ПУШ
+
+
 # browl Stars
