@@ -7,3 +7,11 @@ from django.shortcuts import render
 
 #v_tymane
 # amfbskjdvksjdv
+
+#Amin popytka
+
+# adil top
+# hello
+
+
+# for ismar
