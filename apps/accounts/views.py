@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 # Амин лох
-
+# и черт
 # Adil
 
 #v_tymane
@@ -12,3 +12,4 @@ from django.shortcuts import render
 
 # adil top
 # hello
+#dgfdg
