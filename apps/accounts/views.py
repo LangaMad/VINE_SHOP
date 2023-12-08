@@ -13,5 +13,5 @@ from django.shortcuts import render
 # adil top
 # hello
 
-# ne push
+# I am Adil
 # for ismar
