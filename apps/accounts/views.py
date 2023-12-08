@@ -16,3 +16,4 @@ from django.shortcuts import render
 
 # for ismar
 # НЕ ПУШ
+# взлом хасана
