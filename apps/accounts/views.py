@@ -12,3 +12,15 @@ from django.shortcuts import render
 
 # adil top
 # hello
+
+
+# for ismar
+# НЕ ПУШ
+# взлом хасана
+
+
+# ismar krasawchik
+# a hasan ne top
+
+# browl Stars
+# xczvcvsd
