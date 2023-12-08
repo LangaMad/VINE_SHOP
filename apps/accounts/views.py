@@ -14,7 +14,8 @@ from django.shortcuts import render
 # hello
 
 
-# for ismar
 
 
-# hasan ne top
+
+# ismar krasawchik
+# a hasan ne top
