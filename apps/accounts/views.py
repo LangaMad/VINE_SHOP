@@ -13,5 +13,6 @@ from django.shortcuts import render
 # adil top
 # hello
 
-# I am Adil
+
 # for ismar
+# НЕ ПУШ
