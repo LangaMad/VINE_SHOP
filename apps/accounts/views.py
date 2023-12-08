@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Adil
 
 #v_tymane
-# amfbskjdvksjdv
+#amfbskjdvksjdv
 
 #Amin popytka
 
