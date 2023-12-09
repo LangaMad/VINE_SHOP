@@ -1,17 +1,7 @@
 from django.db import models
 
-# Create your models here.
-
-
-
-
-from django.db import models
-
-# Create your models here.
-# Create your models here.
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
-
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -38,22 +28,14 @@ class UserManager(BaseUserManager):
             raise ValueError('Superuser must have is_superuser=True.')
         return self.create_user(email, password, **extra_fields)
 
-MALE_CHOICES = (
-    ('Мужчина','Мужчина'),
-    ('Женщина','Женщина'),
-    ('Другое','Другое'),
-)
+
 
 class User(AbstractUser):
-    username = models.CharField('Имя пользователя',
-                                max_length=10,
-                                unique=True)
+    first_name = models.CharField('Имя',max_length=30)
+    last_name = models.CharField('Фамилия',max_length=30)
     email = models.EmailField('Электронная почта',
                               max_length=30,
                               unique=True)
-    sex = models.CharField('Пол',
-                           choices=MALE_CHOICES,
-                           default='None')
     age = models.DateTimeField('Дата рождения',
                                null=True,
                                blank=True)
@@ -63,9 +45,5 @@ class User(AbstractUser):
                              blank=True)
     created = models.DateTimeField('Дата создания аккаунта',
                                    auto_now_add=True)
-    avatar = models.ImageField('фото',
-                               upload_to='media/images/',
-                               null=True,
-                               blank=True)
 
     objects = UserManager()
