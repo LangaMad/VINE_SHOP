@@ -72,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
+AUTH_USER_MODEL = "accounts.User"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': "vine_db",
-        'USER': "vine",
+        'USER': "vine_user",
         "PASSWORD": "qwerty123",
         "HOST": "127.0.0.1",
         "PORT": "5432"
@@ -92,6 +92,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
