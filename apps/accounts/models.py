@@ -1,17 +1,7 @@
 from django.db import models
 
-# Create your models here.
-
-
-
-
-from django.db import models
-
-# Create your models here.
-# Create your models here.
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.base_user import BaseUserManager
-
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -41,14 +31,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    first_name = models.CharField( 'Имя', max_length=50)
-    lasrt_name = models.CharField('Фамилия', max_length=50)
+    first_name = models.CharField('Имя',max_length=30)
+    last_name = models.CharField('Фамилия',max_length=30)
     email = models.EmailField('Электронная почта',
                               max_length=30,
                               unique=True)
-    sex = models.CharField('Пол',
-                           choices=MALE_CHOICES,
-                           default='None')
     age = models.DateTimeField('Дата рождения',
                                null=True,
                                blank=True)
@@ -58,4 +45,5 @@ class User(AbstractUser):
                              blank=True)
     created = models.DateTimeField('Дата создания аккаунта',
                                    auto_now_add=True)
+
     objects = UserManager()
