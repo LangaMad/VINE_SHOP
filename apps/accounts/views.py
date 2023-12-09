@@ -1,13 +1,36 @@
 from django.shortcuts import render, redirect
-from .forms import CustomUserCreationForm
+from .forms import RegisterForm, LoginForm
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import authenticate
+from django.views.generic import CreateView, FormView
+from django.urls import reverse_lazy
+from django.http import HttpResponse
+class RegisterView(CreateView):
+    template_name ='register.html'
+    form_class = RegisterForm
+    success_url = reverse_lazy('index')
 
-def register(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')  # Перенаправление на страницу входа
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'registration/register.html', {'form': form})
+class LoginView(FormView):
+    template_name = 'login.html'
+    form_class = LoginForm
 
+    def form_valid(self, form):
+        data = form.cleaned_data
+        username = data['username']
+        email = data['email']
+        password = data['password1']
+        user = authenticate(username=username, email=email,
+        password=password)
+        if user is not None:
+            if user.is_active:
+                login(self.request, user)
+                return redirect('index')
+            else:
+                return HttpResponse('Ваш аккаунт забанен')
+        return HttpResponse('Такого юзера не существует')
+
+
+def UserLogout(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect('index')
