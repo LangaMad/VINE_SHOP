@@ -46,4 +46,9 @@ class User(AbstractUser):
     created = models.DateTimeField('Дата создания аккаунта',
                                    auto_now_add=True)
 
-    objects = UserManager()
+
+class CustomUser(AbstractUser):
+    pass
+
+
+
