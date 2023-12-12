@@ -1,3 +1,4 @@
+import generics
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth import login, logout
@@ -5,6 +6,12 @@ from django.contrib.auth.forms import authenticate
 from django.views.generic import CreateView, FormView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+from rest_framework import generics
+
+from .models import User
+from .serilizers import UserSetializer
+
+
 class RegisterView(CreateView):
     template_name ='register.html'
     form_class = RegisterForm
@@ -34,3 +41,15 @@ def UserLogout(request):
     if request.user.is_authenticated:
         logout(request)
         return redirect('index')
+
+
+
+class UserAPIListVIew(generics.ListAPIView):
+    serializer_class = UserSetializer
+    context_object_name = 'user'
+    queryset = User.objects.all()
+
+
+
+
+

@@ -9,7 +9,6 @@ class ProductListAPIView(generics.ListAPIView):
     context_object_name = 'products'
     queryset = Product.objects.all()
 
-
 class ProductDetailView(DetailView):
     model = Product
     context_object_name = 'product_detail'
