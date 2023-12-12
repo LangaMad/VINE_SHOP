@@ -16,11 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from ..apps.accounts.urls import f
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path('index/', include('apps.product.urls'))
 ]
 from django.conf import settings
 from django.conf.urls.static import static
