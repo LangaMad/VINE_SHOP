@@ -11,7 +11,7 @@ class Product(models.Model):
     public_date = models.DateField("Дата публикации", auto_now_add=True)
     count = models.IntegerField("Количество", default=0)
 
-# popytka
+
 
 
 

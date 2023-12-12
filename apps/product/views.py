@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product
+from rest_framework import generics
+from .serializers import ProductSerializer
 # Create your views here.
-class ProductListView(ListView):
-    model = Product
+class ProductListAPIView(generics.ListAPIView):
+    serializer_class = ProductSerializer
     context_object_name = 'products'
     queryset = Product.objects.all()
 
