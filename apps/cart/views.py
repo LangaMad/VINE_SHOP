@@ -1,28 +1,27 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_POST
-from .cart import Cart
-from shop.models import Product
-from .forms import CartAddProductForm
+from django.shortcuts import render, redirect
+from django.views import View
+from .models import Product, Cart, CartItem
 
+class CartActionView(View):
+    def get(self, request, action, item_id):
+        if action == 'add':
+            return self.cart_add(request, item_id)
+        elif action == 'remove':
+            return self.cart_remove(request, item_id)
+        else:
+            # Обработка неподдерживаемых действий, например, вы можете вернуть 404
+            return render(request, '404.html')
 
-@require_POST
-def cart_add(request, product_id):
-    cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
-    form = CartAddProductForm(request.POST)
-    if form.is_valid():
-        cd = form.cleaned_data
-        cart.add(product=product,
-                 quantity=cd['quantity'],
-                 update_quantity=cd['update'])
-    return redirect('cart:cart_detail')
-def cart_remove(request, product_id):
-    cart = Cart(request)
-    product = get_object_or_404(Product, id=product_id)
-    cart.remove(product)
-    return redirect('cart:cart_detail')
-def cart_detail(request):
-    cart = Cart(request)
-    return render(request, 'cart/detail.html', {'cart': cart})
+    def cart_add(self, request, product_id):
+        product = Product.objects.get(pk=product_id)
+        cart, created = Cart.objects.get_or_create(user=request.user)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+        cart_item.quantity += 1
+        cart_item.save()
+        return redirect('ProductListView')
 
+    def cart_remove(self, request, cart_item_id):
+        cart_item = CartItem.objects.get(pk=cart_item_id)
+        cart_item.delete()
+        return redirect('CartActionView')
 
