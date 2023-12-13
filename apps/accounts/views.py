@@ -1,4 +1,3 @@
-import generics
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth import login, logout
