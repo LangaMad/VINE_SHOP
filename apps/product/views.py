@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product
 from rest_framework import generics
+from rest_framework import views
 from .serializers import ProductSerializer
 # Create your views here.
 class ProductListAPIView(generics.ListAPIView):
