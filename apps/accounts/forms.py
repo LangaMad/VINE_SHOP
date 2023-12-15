@@ -12,6 +12,7 @@ class RegisterForm(UserCreationForm):
         'class': 'form-control',
         'placeholder': 'Password'
     }))
+
     first_name = forms.CharField(widget=forms.TextInput(attrs={
         'class': 'form-control',
         'placeholder': 'first_name'
@@ -25,16 +26,6 @@ class RegisterForm(UserCreationForm):
         'class': 'form-control',
         'placeholder': 'Email'
     }))
-    age = forms.DateTimeField(widget=forms.DateTimeInput(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Your age'}
-    ))
-    phone = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'form-control',
-            'placeholder': 'Your number'}
-    ))
 
     class Meta:
         model = User
@@ -42,6 +33,7 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
+
     email = forms.EmailField(widget=forms.EmailInput(attrs={
         'class': 'form-control',
         'placeholder': 'Email'

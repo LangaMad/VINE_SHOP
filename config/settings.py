@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.product',
     'apps.news',
+    'apps.cart',
 ]
 
 MIDDLEWARE = [
@@ -92,13 +93,13 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK= {
+REST_FRAMEWORK = {
     'DEFAULT_RENDER_CLASSES':[
-        'rest_framework.renders.JSONRender',
-        'rest_framework.renders.BrowsableAPIRender',
-
-    ]
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        ]
 }
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
