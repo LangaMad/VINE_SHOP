@@ -92,7 +92,13 @@ DATABASES = {
     }
 }
 
+REST_FRAMEWORK= {
+    'DEFAULT_RENDER_CLASSES':[
+        'rest_framework.renders.JSONRender',
+        'rest_framework.renders.BrowsableAPIRender',
 
+    ]
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
