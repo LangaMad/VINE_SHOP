@@ -18,6 +18,12 @@ class CustomProductApiView(mixins.ListModelMixin,GenericAPIView):
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
+class ProductApiViewSet(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
+
+
 
 # class CustomProductApiView(APIView):
 #     def get(self, request):
