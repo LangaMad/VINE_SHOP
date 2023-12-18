@@ -2,6 +2,7 @@ from django.forms import model_to_dict
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from rest_framework.generics import GenericAPIView
+
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.decorators import action
@@ -12,20 +13,45 @@ from .serializers import ProductSerializer
 from rest_framework.response import Response
 
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 
 
-class ProductApiViewSet(mixins.CreateModelMixin,
-                   mixins.RetrieveModelMixin,
-                   mixins.UpdateModelMixin,
-                   mixins.DestroyModelMixin,
-                   mixins.ListModelMixin,
-                   GenericViewSet):
+class ProductApiListCreateView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
-    @action(methods=['get'], detail=True)
-    def category(self, request,pk=None):
-        cats = Category.objects.get(id=pk)
-        return Response({'cats':cats.title})
+    permission_classes = (IsAuthenticated,)
+
+
+class ProductApiDestroyView(generics.DestroyAPIView):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    permission_classes = (AllowAny,)
+
+class ProductApiUpdateView(generics.UpdateAPIView): # Обновляет обьект
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+
+
+
+
+
+
+
+
+
+#
+# class ProductApiViewSet(mixins.CreateModelMixin,
+#                    mixins.RetrieveModelMixin,
+#                    mixins.UpdateModelMixin,
+#                    mixins.DestroyModelMixin,
+#                    mixins.ListModelMixin,
+#                    GenericViewSet):
+#     serializer_class = ProductSerializer
+#     queryset = Product.objects.all()
+#     @action(methods=['get'], detail=True)
+#     def category(self, request,pk=None):
+#         cats = Category.objects.get(id=pk)
+#         return Response({'cats':cats.title})
 
 #
 # class CustomProductApiView(mixins.ListModelMixin,
@@ -91,18 +117,12 @@ class ProductApiViewSet(mixins.CreateModelMixin,
 
 
 
-class ProductListAPIView(generics.ListAPIView):
-    serializer_class = ProductSerializer
-    context_object_name = 'products'
-    queryset = Product.objects.all()
+
 
 class ProductApiCreateView(generics.CreateAPIView): # Создает обьект
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
-class ProductApiUpdateView(generics.UpdateAPIView): # Обновляет обьект
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
 
 class ProductDetailView(DetailView):
     model = Product
@@ -121,9 +141,6 @@ class ProductApiListCreateView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
-class ProductApiDestroyView(generics.DestroyAPIView):
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
 
 class ProductApiRetrieveView(generics.RetrieveAPIView):
     serializer_class = ProductSerializer

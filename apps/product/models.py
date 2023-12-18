@@ -11,7 +11,7 @@ class Product(models.Model):
     photo = models.ImageField("Фото", upload_to='images/')
     public_date = models.DateField("Дата публикации", auto_now_add=True)
     count = models.IntegerField("Количество", default=0)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name= 'Пользователь',on_delete=models.CASCADE)
 
 class Category(models.Model):
     title = models.CharField('Category',max_length=100)
