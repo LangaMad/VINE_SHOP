@@ -13,7 +13,6 @@ class Product(models.Model):
     public_date = models.DateField("Дата публикации", auto_now_add=True)
     count = models.IntegerField("Количество", default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Category(models.Model):
     title = models.CharField('Category',max_length=100)
