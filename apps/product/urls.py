@@ -1,38 +1,17 @@
-from django.urls import path
+from django.urls import path,include
 from .views import *
+from rest_framework.routers import SimpleRouter,DefaultRouter
+
+router = DefaultRouter()
+router.register('vines', ProductApiViewSet)
 
 urlpatterns = [
-    path('api/v1/list',
-         ProductListAPIView.as_view(),
-         name='ProductListView'),
-    path('Product/Details/View',
-         ProductDetailView.as_view(),
-         name='ProductDetailsView'),
-    path('v1/create/',
-         ProductApiCreateView.as_view(),
-         name='ProductApiCreateView'),
-    path('v1/update/<int:pk>/',
-         ProductApiUpdateView.as_view(),
-         name='ProductApiUpdateView'),
-    path('v1/list_create/',
-         ProductApiListCreateView.as_view(),
-         name='ProductListCreateView'),
-    path('v1/destroy/<int:pk>/',
-         ProductApiDestroyView.as_view(),
-         name='ProductApiDestroyView'),
-    path('v1/retrieve/<int:pk>/',
-         ProductApiRetrieveView.as_view(),
-         name='ProductApiRetrieveView'),
-    path('v1/retrieve_update/<int:pk>/',
-         ProductApiRetrieveUpdateView.as_view(),
-         name='ProductApiRetrieveUpdateView'),
-    path('v1/retrieve_destroy/<int:pk>/',
-         ProductApiRetrieveDestroyView.as_view(),
-         name='ProductApiRetrieveDestroyView'),
-    path('v1/retrieve_update_destroy/<int:pk>/',
-         ProductApiRetrieveUpdateDestroyView.as_view(),
-         name='ProductApiRetrieveUpdateDestroyView'),
+    path('v1/', include(router.urls)),
+    # path('v1/list1/', ProductApiViewset.as_view({'get':'list'}), name='ProductListView'),
+    # # path('Product/Details/View', ProductDetailView.as_view(), name='ProductDetailsView'),
+    # # path('v1/create/', ProductApiCreateView.as_view(), name='ProductApiCreateView'),
+    # # path('v1/list/<int:pk>/', ProductApiViewset.as_view({'put':'update'}), name='ProductApiUpdateView'),
+    # path('v1/list/<int:pk>/',Product2.as_view(),  name='CustomProductApiView'),
+    # path('v1/list2/', ProductListAPIView.as_view(), name='CustomProductApiView2'),
+
 ]
-
-
-

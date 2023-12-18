@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.contrib import admin
-from .models import Product
+from .models import Product , Category
 # Register your models here.
-
+from django.utils.html import format_html
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_products =[
@@ -16,5 +16,11 @@ class ProductAdmin(admin.ModelAdmin):
     ]
 
 
-
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = [
+        'title',
+        'photo',
+        'product',
+    ]
 
