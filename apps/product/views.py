@@ -3,20 +3,51 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from rest_framework.generics import GenericAPIView
 from rest_framework.views import APIView
-from .models import Product
+from rest_framework.viewsets import GenericViewSet
+from rest_framework.decorators import action
+from .models import Product, Category
 from rest_framework import generics , mixins
 from rest_framework import viewsets
 from .serializers import ProductSerializer
 from rest_framework.response import Response
 
+from rest_framework.decorators import action
 
 
-class CustomProductApiView(mixins.ListModelMixin,GenericAPIView):
-    queryset = Product.objects.all()
+class ProductApiViewSet(mixins.CreateModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   mixins.DestroyModelMixin,
+                   mixins.ListModelMixin,
+                   GenericViewSet):
     serializer_class = ProductSerializer
+    queryset = Product.objects.all()
+    @action(methods=['get'], detail=True)
+    def category(self, request,pk=None):
+        cats = Category.objects.get(id=pk)
+        return Response({'cats':cats.title})
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
+#
+# class CustomProductApiView(mixins.ListModelMixin,
+#                            mixins.RetrieveModelMixin,
+#                            mixins.CreateModelMixin,
+#                            mixins.DestroyModelMixin,
+#                            GenericAPIView):
+#
+#     def delete(self, request, *args, **kwargs):
+#         return self.destroy(request, *args, **kwargs)
+#
+#     def get(self, request, *args, **kwargs):
+#         return self.retrieve(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+#
+#
+#
+# class Product2(generics.CustomProductApiView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
 
 
 # class CustomProductApiView(APIView):
@@ -59,9 +90,6 @@ class CustomProductApiView(mixins.ListModelMixin,GenericAPIView):
 
 
 
-class ProductApiViewset(viewsets.ModelViewSet):
-    serializer_class = ProductSerializer
-    queryset = Product.objects.all()
 
 class ProductListAPIView(generics.ListAPIView):
     serializer_class = ProductSerializer
