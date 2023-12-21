@@ -5,7 +5,7 @@ from rest_framework.routers import SimpleRouter,DefaultRouter
 
 # router = DefaultRouter()
 # router.register('vines', ProductApiViewSet)
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
+from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView, TokenObtainPairView
 
 urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
