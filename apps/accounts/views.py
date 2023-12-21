@@ -39,7 +39,7 @@ class LoginView(FormView):
 def UserLogout(request):
     if request.user.is_authenticated:
         logout(request)
-        return redirect('index')
+
 
 
 

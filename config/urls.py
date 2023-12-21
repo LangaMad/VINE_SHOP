@@ -18,8 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('api/drf-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('api/', include('apps.product.urls'))
+    path('', include('apps.product.urls'))
 ]
 from django.conf import settings
 from django.conf.urls.static import static

@@ -15,6 +15,13 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated, AllowAny
 
+# Метод Get используется для получения данных
+# Метод Post используется для отправки данных
+# Метод Put используется для обновления данных
+# Метод Patch используется для обновления какой-либо части данных
+# Метод Delete используется для удаления данных
+# Метод Head используется для проверки существования данных
+# Метод Options используется для получения списка доступных методов
 
 class ProductApiListCreateView(generics.ListCreateAPIView):
     serializer_class = ProductSerializer
@@ -22,10 +29,10 @@ class ProductApiListCreateView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
 
 
-class ProductApiDestroyView(generics.DestroyAPIView):
+class ProductApiDestroyView(generics.ListAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
 class ProductApiUpdateView(generics.UpdateAPIView): # Обновляет обьект
     serializer_class = ProductSerializer
