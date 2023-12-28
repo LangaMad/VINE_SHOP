@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     # 'djoser',
     'rest_framework_simplejwt',
     # 'rest_framework.authtoken',
+    'drf_yasg',
+    'rest_framework_swagger',
     'apps.accounts',
     'apps.product',
     'apps.news',

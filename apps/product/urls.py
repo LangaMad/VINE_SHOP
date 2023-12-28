@@ -1,6 +1,7 @@
 from django.urls import path, include, re_path
 
 from .views import *
+
 from rest_framework.routers import SimpleRouter,DefaultRouter
 
 # router = DefaultRouter()
@@ -8,9 +9,10 @@ from rest_framework.routers import SimpleRouter,DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView, TokenObtainPairView
 
 urlpatterns = [
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/v1/verify/', TokenVerifyView.as_view(), name='token_verify'),
+
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # path('api/v1/verify/', TokenVerifyView.as_view(), name='token_verify'),
     # path('v1/', include(router.urls)),
     # path('v1/list1/', ProductApiViewset.as_view({'get':'list'}), name='ProductListView'),
     # # path('Product/Details/View', ProductDetailView.as_view(), name='ProductDetailsView'),
